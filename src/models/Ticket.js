@@ -12,7 +12,7 @@ const ticketSchema = new Schema({
     },
     author: {
         type: mongoose.SchemaTypes.ObjectId,
-        ref: User
+        ref: "User"
     },
     createdAt: {
         type: Date,
@@ -26,7 +26,10 @@ const ticketSchema = new Schema({
     },
     replies: [String],
     status: String,
-    category: mongoose.SchemaTypes.ObjectId
+    category: {
+        type: mongoose.SchemaTypes.ObjectId,
+        ref: "Category"
+    }
 })
 
 exports.default = model('Ticket', ticketSchema)

@@ -1,22 +1,16 @@
-import mongoose, {Schema, model} from 'mongoose';
+const mongoose = require('mongoose');
+const {Schema, model} = require('mongoose');
 
 const RoleSchema = new Schema({
     roleName: {
         type: String,
         required: true
     },
-    createdAt: {
-        type: Date,
-        default: () => Date.now(),
-        immutable: true
-    },
-    updatedAt: {
-        type: Date,
-        default: () => Date.now(),
-        immutable: true
-    },
     permisos: {
-        categories: [mongoose.SchemaTypes.ObjectId],
+        categories: [{
+            type: mongoose.SchemaTypes.ObjectId,
+            ref: "Category"
+        }],
         edit: Boolean,
         reply: Boolean,
         read: {
@@ -24,6 +18,8 @@ const RoleSchema = new Schema({
             default: true
         }
     }
+}, {
+    timestamps: true
 });
 
 module.exports = model('Role', RoleSchema)
