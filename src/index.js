@@ -1,7 +1,7 @@
 const app = require('./app')
 const db = require('./db/db')
-const port = 3000
-
+require('dotenv').config()
+const port = process.env.PORT || 3000
 
 db()
 app.listen(port, () => {

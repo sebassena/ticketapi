@@ -31,4 +31,4 @@ UserSchema.statics.comparePassword = async (password, _password) => {
 }
 
 
-module.exports = model('User', UserSchema);
+module.exports = model('users', UserSchema);

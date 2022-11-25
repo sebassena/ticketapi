@@ -1,5 +1,7 @@
 const mongoose = require('mongoose');
-const urlDB = "mongodb+srv://admin:h6WNptS2O1dzmzyq@cluster0.eemhrop.mongodb.net/?retryWrites=true&w=majority"
+require('dotenv').config()
+
+const urlDB = process.env.MONGO;
 
 const db = async () => {
     try{

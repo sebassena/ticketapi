@@ -7,19 +7,27 @@ const RoleSchema = new Schema({
         required: true
     },
     permisos: {
-        categories: [{
-            type: mongoose.SchemaTypes.ObjectId,
-            ref: "Category"
-        }],
-        edit: Boolean,
-        reply: Boolean,
-        read: {
-            type: Boolean, 
-            default: true
+        categories: [
+            {
+                category: {
+                    type: mongoose.SchemaTypes.ObjectId,
+                    ref: "Category"
+                },
+                edit: Boolean,
+                reply: Boolean,
+                read: {
+                    type: Boolean, 
+                    default: true
+                }
+            }
+        ],
+        isAdmin : {
+            type: Boolean,
+            default: false
         }
     }
 }, {
     timestamps: true
 });
 
-module.exports = model('Role', RoleSchema)
+module.exports = model('roles', RoleSchema)

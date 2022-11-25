@@ -1,4 +1,5 @@
-import mongoose, {Schema, model} from 'mongoose';
+const mongoose = require('mongoose')
+const {Schema, model} =  require('mongoose');
 
 const ticketSchema = new Schema({
     title: {
@@ -32,4 +33,4 @@ const ticketSchema = new Schema({
     }
 })
 
-exports.default = model('Ticket', ticketSchema)
+exports.default = model('tickets', ticketSchema)
