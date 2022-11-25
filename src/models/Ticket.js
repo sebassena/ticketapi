@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 const {Schema, model} =  require('mongoose');
 
-const ticketSchema = new Schema({
+const TicketSchema = new Schema({
     title: {
         type: String,
         required: true,
@@ -13,24 +13,28 @@ const ticketSchema = new Schema({
     },
     author: {
         type: mongoose.SchemaTypes.ObjectId,
-        ref: "User"
+        ref: "users"
     },
-    createdAt: {
-        type: Date,
-        default: () => Date.now(),
-        immutable: true
-    },
-    updatedAt: {
-        type: Date,
-        default: () => Date.now(),
-        immutable: true 
-    },
-    replies: [String],
+    replies: [{
+        replyBy: {
+            type: mongoose.SchemaTypes.ObjectId,
+            ref: "users"
+        },
+        replyContent: {
+            type: String
+        },
+        replyDate: {
+            type: Date,
+            default: () => Date.now()
+        }
+    }],
     status: String,
     category: {
         type: mongoose.SchemaTypes.ObjectId,
-        ref: "Category"
+        ref: "categories"
     }
+}, {
+    timestamps: true
 })
 
-exports.default = model('tickets', ticketSchema)
+module.exports = model('tickets', TicketSchema)

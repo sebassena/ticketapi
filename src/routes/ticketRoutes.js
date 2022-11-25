@@ -7,11 +7,11 @@ const router = Router();
 router.post('/', ticketController.createTicket)
 //Obtener todos los tickets
 router.get('/', ticketController.getTickets)
-//Eliminar ticket por ID
-router.delete('/:ticketId', ticketController.deleteTicket)
 //Obtener ticket por ID
 router.get('/:ticketId', ticketController.getTicketById)
+//Eliminar ticket por ID
+router.delete('/:ticketId', ticketController.deleteTicket)
 //Actualizar ticket por ID
-router.put('/:ticketId')
+router.put('/:ticketId', ticketController.updateTicket)
 
 module.exports = router;

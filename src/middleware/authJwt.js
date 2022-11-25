@@ -1,5 +1,6 @@
 const User = require('../models/User');
 const jwt = require('jsonwebtoken');
+
 require('dotenv').config()
 
 
@@ -22,11 +23,15 @@ const verifyToken = async (req, res, next) => {
 }
 
 const isAdmin = async (req, res, next) => {
-
+    const getUser = await User.findById(req.userId).populate('roles');
+    if(!getUser) return res.status(400).json({message: "Usuario sin privilegios"});
+    if(!getUser.roles[0].permisos.isAdmin) return res.status(503).json({message: 'Usuario sin permisos suficientes.'})
+     
+    next()
 }
 
 const checkPermisos = async (req, res, next) => {
-
+    
 }
 
 module.exports = {

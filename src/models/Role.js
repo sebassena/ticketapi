@@ -11,7 +11,7 @@ const RoleSchema = new Schema({
             {
                 category: {
                     type: mongoose.SchemaTypes.ObjectId,
-                    ref: "Category"
+                    ref: "categories"
                 },
                 edit: Boolean,
                 reply: Boolean,
